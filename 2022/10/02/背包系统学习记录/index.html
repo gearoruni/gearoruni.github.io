@@ -10,7 +10,7 @@
     
     
     
-    <title>categories: 测试类 | Hexo</title>
+    <title>背包系统学习记录 | Hexo</title>
     <link href="https://gearoruni.github.io" rel="prefetch" />
 
     
@@ -217,19 +217,38 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    <article class="article well article-body" id="article-category">
+                    
+<article class="article well article-body" id="article">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
         <a href="https://gearoruni.github.io">Hexo</a>
         >
-        <span>目录</span>
+        <span>背包系统学习记录</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html">测试类</a>
+                <a href="/2022/10/02/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">背包系统学习记录</a>
             </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2022-10-02
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-eye"></i>
+            </span>
+            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -237,21 +256,101 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html">测试类</a>
+                    <a href="/2022/10/02/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">背包系统学习记录</a>
                 </h4>
             </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2022-10-02
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">学习记录</a>
+                
+                
+                
+                <i class="fa fa-eye"></i>
+                
+            </p>
         </center>
     </div>
-    <div class="content-article" style="margin-top: 30px;">
-        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-            
-            <a href="/2022/09/10/test/">test</a>
-            <br>
-            
-            
-        </div>
+    <div class="content-article">
+        <h2 id="前言"><a href="#前言" class="headerlink" title="[前言]"></a>[前言]</h2><p>咿呀，磕磕碰碰终于把背包系统学习完了，我还是第一次制作这么大的系统，于是在迈入对话与任务系统前想用博客总结一下，我不怎么会文档排版，大概会有些乱（反正没人看），下面我会从大框架开始由表向里的回忆整个系统制作。</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="[介绍]"></a>[介绍]</h2><h3 id="1-UI"><a href="#1-UI" class="headerlink" title="1.UI"></a>1.UI</h3><p>背包系统我们需要制作背包、快捷栏、人物面板（装备栏），虽然看起来不一样，但其实在背后它们都是一样的逻辑，在UI界面，由一个巨大的容器（container）包裹住许多小的格子（holder），每一个格子下有两个子物体(item)，一个用于存放当前格子里存放的物品的信息，另一个负责显示物品的图标与数量，我将负责显示的对象设为存放信息对象的子物体，毕竟显示用的图标与数量也是物品信息；在背后每一个container会有一个<strong>资产文件</strong>，它充当了我们每一个container的数据库，我们的物品会真正地存放在这些数据库中。下面的图显示了他们之间的关系。</p>
+<p><img src="/2022/10/02/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/%E5%85%B3%E7%B3%BB%E5%9B%BE.png" alt="关系图"></p>
+<h2 id="2-代码"><a href="#2-代码" class="headerlink" title="2.代码"></a>2.代码</h2><ul>
+<li><p><strong>item</strong></p>
+<ul>
+<li><p>item作为背包系统最小的单位，挂载的代码只需要记录以下信息</p>
+<ol>
+<li>显示图标的gameObject</li>
+<li>显示数量的gameObject</li>
+<li>item所在的container对应的数据库</li>
+<li>item在container中的索引（也就是这个item是第几个格子，用于在数据库中读取信息）</li>
+</ol>
+</li>
+<li><p>函数</p>
+<p>item只需要一个函数<code>SetUp(itemData_SO item,int itemAmount)</code>（<code>itemData_SO</code>就是记录物品信息的自定义类型），它接受来自holder给的物品信息以及数量，用于对UI进行刷新</p>
+</li>
+<li><p>注解</p>
+<p>唯一的函数并没有用到数据库以及索引，因为这两个变量是由holder调用，详情见<a href="#%5B%E5%89%8D%E8%A8%80%5D">holder</a></p>
+</li>
+</ul>
+</li>
+<li><p><strong>holder</strong></p>
+<ul>
+<li>holder在整个背包系统中负责记录以下信息<ol>
+<li>所在container的类型</li>
+<li>对应的item的gameObject</li>
+</ol>
+</li>
+<li>函数<ol>
+<li><code>UpdateItem()</code><ul>
+<li>这个函数根据container的类型确定item的数据库，同时根据item的索引读取数据库，将信息传给item。这个函数也会可以执行一些别的功能，比如当container类型处于武器栏时，可以调用切换武器的相关函数。</li>
+</ul>
+</li>
+<li><code>UseItem()</code><ul>
+<li>这个函数负责消耗品的使用，将数据库对应数量减少，同时调用对应物品的功能函数，最后让item更新UI。</li>
+</ul>
+</li>
+<li>还有很多关于拖拽物品的函数，详情见拖拽。</li>
+</ol>
+</li>
+<li>注解<ul>
+<li>container类型是指这个背包承担的功能，比如一般的背包栏、快捷栏、武器装备栏，作出区分是因为一般情况下我们不能装备消耗品，也不会将装备放在快捷栏</li>
+<li>holder的作用是最大的，item和container都只负责更新，只有holder承担全部的背包功能，当然本文只是提供背包系统的思路，你也可以将这些功能分配给别的部分，比如本文的数据库由item记录，由holder向其读取数据，你可以让container记录，只要代码能跑就行（乐）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>container</strong></p>
+<ul>
+<li><p>container负责记录它手下的holder，一个数组即可搞定</p>
+</li>
+<li><p>函数</p>
+<ul>
+<li><p><code>freshUI()</code></p>
+<p>按照holder在数组中的索引给item的数据库索引赋值，这样就可以做到每个item都顺序对应一个数据库区域，同时调用<code>UpdataItem()</code>更新UI</p>
+</li>
+</ul>
+</li>
+<li><p>注解</p>
+<p>container就是个容器</p>
+</li>
+</ul>
+</li>
+<li><p><strong>补充</strong></p>
+<ul>
+<li>数据库我们会提前建立好，并将引用提供给<code>inventoryManager</code>这是一种<a href="/2022/09/15/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" title="单例模式">单例模式</a></li>
+</ul>
+</li>
+</ul>
+
     </div>
 </article>
+
+
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -432,7 +531,7 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2022/09/15/%E5%8D%8F%E7%A8%8B/">协程</a>
+                    <a href="/2022/09/15/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a>
                 </span>
             </li>
             
@@ -465,17 +564,17 @@
 
                 
                 <li>
-                    <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2022/10/02/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2022/10/02/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2022/10/02/%E8%83%8C%E5%8C%85%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
                 
             </ul>
@@ -483,21 +582,21 @@
                 
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 19.465418146125785px;" class="tag-cloud-link">插件</a>
+    <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 10.776510905315023px;" class="tag-cloud-link">插件</a>
     
-    <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 16.27583720203997px;" class="tag-cloud-link">逆向</a>
+    <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 16.025207553582806px;" class="tag-cloud-link">逆向</a>
     
-    <a href="/tags/C/" style="font-size: 15.160269063908995px;" class="tag-cloud-link">C#</a>
+    <a href="/tags/C/" style="font-size: 17.112629334968176px;" class="tag-cloud-link">C#</a>
     
-    <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.840846741987743px;" class="tag-cloud-link">语法</a>
+    <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 18.671356023973644px;" class="tag-cloud-link">语法</a>
     
-    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 18.75671554520246px;" class="tag-cloud-link">设计模式</a>
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 17.21837744158613px;" class="tag-cloud-link">设计模式</a>
     
-    <a href="/tags/UI/" style="font-size: 18.609200009336444px;" class="tag-cloud-link">UI</a>
+    <a href="/tags/UI/" style="font-size: 17.65885483290265px;" class="tag-cloud-link">UI</a>
     
-    <a href="/tags/%E6%8E%A5%E5%8F%A3/" style="font-size: 8.141946815856839px;" class="tag-cloud-link">接口</a>
+    <a href="/tags/%E6%8E%A5%E5%8F%A3/" style="font-size: 19.013042749883713px;" class="tag-cloud-link">接口</a>
     
-    <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" style="font-size: 12.714880737155084px;" class="tag-cloud-link">学习记录</a>
+    <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" style="font-size: 16.080948639320404px;" class="tag-cloud-link">学习记录</a>
     
 </div>
                 

@@ -10,7 +10,7 @@
     
     
     
-    <title>categories: 测试类 | Hexo</title>
+    <title>UI参数PointerEventData | Hexo</title>
     <link href="https://gearoruni.github.io" rel="prefetch" />
 
     
@@ -217,19 +217,40 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    <article class="article well article-body" id="article-category">
+                    
+<article class="article well article-body" id="article">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
         <a href="https://gearoruni.github.io">Hexo</a>
         >
-        <span>目录</span>
+        <span>UI参数PointerEventData</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html">测试类</a>
+                <a href="/2022/09/29/UI%E4%BA%8B%E4%BB%B6%E6%8E%A5%E5%8F%A3%E4%BB%A5%E5%8F%8A%E5%8F%82%E6%95%B0PointerEventData/">UI参数PointerEventData</a>
             </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/UI/">UI</a>, 
+                
+                <a href="/tags/%E6%8E%A5%E5%8F%A3/">接口</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2022-09-29
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-eye"></i>
+            </span>
+            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -237,21 +258,87 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html">测试类</a>
+                    <a href="/2022/09/29/UI%E4%BA%8B%E4%BB%B6%E6%8E%A5%E5%8F%A3%E4%BB%A5%E5%8F%8A%E5%8F%82%E6%95%B0PointerEventData/">UI参数PointerEventData</a>
                 </h4>
             </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2022-09-29
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/UI/">UI</a>, 
+                
+                <a href="/tags/%E6%8E%A5%E5%8F%A3/">接口</a>
+                
+                
+                
+                <i class="fa fa-eye"></i>
+                
+            </p>
         </center>
     </div>
-    <div class="content-article" style="margin-top: 30px;">
-        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-            
-            <a href="/2022/09/10/test/">test</a>
-            <br>
-            
-            
-        </div>
+    <div class="content-article">
+        <h2 id="【事件接口】"><a href="#【事件接口】" class="headerlink" title="【事件接口】"></a>【事件接口】</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>​		关于UI事件，指的是对于UI界面本身的交互，例如拖动背包栏、拖拽背包中的物体、鼠标放在物品上时显示物品描述等等，如果想要自己实现，我们可能会选择射线检测的方式配合代码来锁定UI，幸运的是Unity官方提供了许多封装接口，让我们可以跳过这一阶段而把重心放在功能开发上。</p>
+<p>这里放上部分接口</p>
+<table>
+<thead>
+<tr>
+<th align="center">接口名</th>
+<th align="center">函数</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>IPointerClickHandler</code></td>
+<td align="center"><code>OnPointerClick</code></td>
+<td align="center">当检测到鼠标单次点击时调用函数</td>
+</tr>
+<tr>
+<td align="center"><code>IPointerDownHandler</code></td>
+<td align="center"><code>OnPointerDown</code></td>
+<td align="center">当检测到鼠标按下时持续调用函数，松开停止</td>
+</tr>
+<tr>
+<td align="center"><code>IPointerUpHandler</code></td>
+<td align="center"><code>OnPointerUp</code></td>
+<td align="center">鼠标释放时调用，需要先调用<code>IPointerDownHandler</code></td>
+</tr>
+<tr>
+<td align="center"><code>IPointerEnterHandler</code></td>
+<td align="center"><code>OnPointerEnter</code></td>
+<td align="center">当鼠标进入该UI对象时调用函数</td>
+</tr>
+<tr>
+<td align="center"><code>IPointerExitHandler</code></td>
+<td align="center"><code>OnPointerExit</code></td>
+<td align="center">当鼠标离开该UI对象时调用函数</td>
+</tr>
+<tr>
+<td align="center"><code>IBeginDragHandler</code></td>
+<td align="center"><code>OnBeginDrag</code></td>
+<td align="center">在开始拖动时调用函数，需要连同<code>IDragHandler</code>一起实现</td>
+</tr>
+<tr>
+<td align="center"><code>IDragHandler</code></td>
+<td align="center"><code>OnDrag</code></td>
+<td align="center">在拖动过程中持续调用函数</td>
+</tr>
+<tr>
+<td align="center"><code>IEndDragHandler</code></td>
+<td align="center"><code>OnEndDrag</code></td>
+<td align="center">停止拖动即松开鼠标时调用函数</td>
+</tr>
+</tbody></table>
+<p>在实现这些接口时，我们会发现函数会自带一个<code>PointerEventData</code>类型的参数，这个参数会记录当前帧鼠标与UI交互的各种信息，下面会介绍部分变量（持续更新）</p>
+<h3 id="【clickCount】"><a href="#【clickCount】" class="headerlink" title="【clickCount】"></a>【clickCount】</h3><p>这个变量会返回连续单击鼠标的次数，连续点击时这个数值会一直上涨，当点击间隔时间小于某个值时（官网没有给具体时间，我也没具体测试，但经常玩游戏的大家应该都能理解连击和单击的区分吧），变量会重新计数。</p>
+<h3 id="【delta】"><a href="#【delta】" class="headerlink" title="【delta】"></a>【delta】</h3><p>这个变量会返回当前帧的鼠标坐标相对于上一帧的增量（<code>vector2</code>），也就是鼠标与上一帧相比移动的距离与方向，因为这个增量是以上一帧鼠标的坐标为原点，所以要注意将鼠标本身的坐标区分开（鼠标的坐标是以左下角为原点）</p>
+
     </div>
 </article>
+
+
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -396,12 +483,6 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2022/09/10/NavMeshAgent/">“NavMeshAgent”</a>
-                </span>
-            </li>
-            
-            <li class="list-group-item">
-                <span class="post-title">
                     <a href="/2022/09/10/hello-world/">Hello World</a>
                 </span>
             </li>
@@ -438,6 +519,12 @@
             
             <li class="list-group-item">
                 <span class="post-title">
+                    <a href="/2022/09/15/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a>
+                </span>
+            </li>
+            
+            <li class="list-group-item">
+                <span class="post-title">
                     <a href="/2022/09/15/%E5%A7%94%E6%89%98%E4%BA%8B%E4%BB%B6/">委托事件</a>
                 </span>
             </li>
@@ -465,17 +552,17 @@
 
                 
                 <li>
-                    <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2022/09/29/UI%E4%BA%8B%E4%BB%B6%E6%8E%A5%E5%8F%A3%E4%BB%A5%E5%8F%8A%E5%8F%82%E6%95%B0PointerEventData/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2022/09/29/UI%E4%BA%8B%E4%BB%B6%E6%8E%A5%E5%8F%A3%E4%BB%A5%E5%8F%8A%E5%8F%82%E6%95%B0PointerEventData/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2022/09/29/UI%E4%BA%8B%E4%BB%B6%E6%8E%A5%E5%8F%A3%E4%BB%A5%E5%8F%8A%E5%8F%82%E6%95%B0PointerEventData/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
                 
             </ul>
@@ -483,21 +570,21 @@
                 
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 19.465418146125785px;" class="tag-cloud-link">插件</a>
+    <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 9.983309816800457px;" class="tag-cloud-link">插件</a>
     
-    <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 16.27583720203997px;" class="tag-cloud-link">逆向</a>
+    <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 15.507285573051002px;" class="tag-cloud-link">逆向</a>
     
-    <a href="/tags/C/" style="font-size: 15.160269063908995px;" class="tag-cloud-link">C#</a>
+    <a href="/tags/C/" style="font-size: 16.171489441196854px;" class="tag-cloud-link">C#</a>
     
-    <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.840846741987743px;" class="tag-cloud-link">语法</a>
+    <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 19.206645317778797px;" class="tag-cloud-link">语法</a>
     
-    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 18.75671554520246px;" class="tag-cloud-link">设计模式</a>
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 14.910903674636474px;" class="tag-cloud-link">设计模式</a>
     
-    <a href="/tags/UI/" style="font-size: 18.609200009336444px;" class="tag-cloud-link">UI</a>
+    <a href="/tags/UI/" style="font-size: 17.09134779997143px;" class="tag-cloud-link">UI</a>
     
-    <a href="/tags/%E6%8E%A5%E5%8F%A3/" style="font-size: 8.141946815856839px;" class="tag-cloud-link">接口</a>
+    <a href="/tags/%E6%8E%A5%E5%8F%A3/" style="font-size: 13.082737797586262px;" class="tag-cloud-link">接口</a>
     
-    <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" style="font-size: 12.714880737155084px;" class="tag-cloud-link">学习记录</a>
+    <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" style="font-size: 10.298383634043795px;" class="tag-cloud-link">学习记录</a>
     
 </div>
                 

@@ -10,7 +10,7 @@
     
     
     
-    <title>categories: 测试类 | Hexo</title>
+    <title>委托事件 | Hexo</title>
     <link href="https://gearoruni.github.io" rel="prefetch" />
 
     
@@ -217,19 +217,40 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    <article class="article well article-body" id="article-category">
+                    
+<article class="article well article-body" id="article">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
         <a href="https://gearoruni.github.io">Hexo</a>
         >
-        <span>目录</span>
+        <span>委托事件</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html">测试类</a>
+                <a href="/2022/09/15/%E5%A7%94%E6%89%98%E4%BA%8B%E4%BB%B6/">委托事件</a>
             </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/C/">C#</a>, 
+                
+                <a href="/tags/%E8%AF%AD%E6%B3%95/">语法</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2022-09-15
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-eye"></i>
+            </span>
+            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -237,21 +258,49 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html">测试类</a>
+                    <a href="/2022/09/15/%E5%A7%94%E6%89%98%E4%BA%8B%E4%BB%B6/">委托事件</a>
                 </h4>
             </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2022-09-15
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/C/">C#</a>, 
+                
+                <a href="/tags/%E8%AF%AD%E6%B3%95/">语法</a>
+                
+                
+                
+                <i class="fa fa-eye"></i>
+                
+            </p>
         </center>
     </div>
-    <div class="content-article" style="margin-top: 30px;">
-        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-            
-            <a href="/2022/09/10/test/">test</a>
-            <br>
-            
-            
-        </div>
+    <div class="content-article">
+        <ol>
+<li><p>描述：c#提供<code>Action</code>的无返回值的泛型委托，由某一个类发布一个委托，其他类的函数订阅这个委托，当这个委托被启动后，所有订阅委托的函数会按照订阅顺序依次执行</p>
+</li>
+<li><p>声明：<code>public event Action&lt;T&gt; OnMouseClick;</code></p>
+</li>
+<li><p>订阅：<code>MouseManager.Instance.OnMouseClick+=MoveToTarget;</code></p>
+</li>
+<li><p>取消订阅：<code>MouseManager.Instance.OnMouseClick-=MoveToTarget;</code></p>
+</li>
+<li><p>启动：<code>OnMouseClick?.Invoke(T t);</code></p>
+</li>
+<li><p>实例：</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">event</span> Action&lt;Vector3&gt; OnMouseClick;</span><br><span class="line"><span class="comment">//启动</span></span><br><span class="line">OnMouseClick?.Invoke(hitinfo.point);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//订阅</span></span><br><span class="line"><span class="keyword">if</span>(MouseManager.Instance!=<span class="literal">null</span>)</span><br><span class="line">&#123;</span><br><span class="line">	MouseManager.Instance.OnMouseClick += MoveToTarget;</span><br><span class="line">	MouseManager.Instance.OnEnemyClick += AttackTarget;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
     </div>
 </article>
+
+
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -426,13 +475,13 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2022/09/15/Transform/">Transform</a>
+                    <a href="/2022/09/15/%E5%8D%8F%E7%A8%8B/">协程</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2022/09/15/%E5%8D%8F%E7%A8%8B/">协程</a>
+                    <a href="/2022/09/15/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a>
                 </span>
             </li>
             
@@ -465,17 +514,17 @@
 
                 
                 <li>
-                    <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2022/09/15/%E5%A7%94%E6%89%98%E4%BA%8B%E4%BB%B6/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2022/09/15/%E5%A7%94%E6%89%98%E4%BA%8B%E4%BB%B6/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2022/09/15/%E5%A7%94%E6%89%98%E4%BA%8B%E4%BB%B6/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
                 
             </ul>
@@ -483,21 +532,21 @@
                 
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 19.465418146125785px;" class="tag-cloud-link">插件</a>
+    <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 8.670127170664596px;" class="tag-cloud-link">插件</a>
     
-    <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 16.27583720203997px;" class="tag-cloud-link">逆向</a>
+    <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 11.9086583978188px;" class="tag-cloud-link">逆向</a>
     
-    <a href="/tags/C/" style="font-size: 15.160269063908995px;" class="tag-cloud-link">C#</a>
+    <a href="/tags/C/" style="font-size: 19.95825285954063px;" class="tag-cloud-link">C#</a>
     
-    <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.840846741987743px;" class="tag-cloud-link">语法</a>
+    <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 9.612855274721099px;" class="tag-cloud-link">语法</a>
     
-    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 18.75671554520246px;" class="tag-cloud-link">设计模式</a>
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 15.123980461932756px;" class="tag-cloud-link">设计模式</a>
     
-    <a href="/tags/UI/" style="font-size: 18.609200009336444px;" class="tag-cloud-link">UI</a>
+    <a href="/tags/UI/" style="font-size: 8.013387742586762px;" class="tag-cloud-link">UI</a>
     
-    <a href="/tags/%E6%8E%A5%E5%8F%A3/" style="font-size: 8.141946815856839px;" class="tag-cloud-link">接口</a>
+    <a href="/tags/%E6%8E%A5%E5%8F%A3/" style="font-size: 14.694469116937574px;" class="tag-cloud-link">接口</a>
     
-    <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" style="font-size: 12.714880737155084px;" class="tag-cloud-link">学习记录</a>
+    <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" style="font-size: 19.895177055260902px;" class="tag-cloud-link">学习记录</a>
     
 </div>
                 

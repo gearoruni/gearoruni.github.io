@@ -10,7 +10,7 @@
     
     
     
-    <title>categories: 测试类 | Hexo</title>
+    <title>Transform | Hexo</title>
     <link href="https://gearoruni.github.io" rel="prefetch" />
 
     
@@ -217,19 +217,38 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 gal-right" id="mainstay">
-                    <article class="article well article-body" id="article-category">
+                    
+<article class="article well article-body" id="article">
     <div class="breadcrumb">
         <i class="fa fa-home"></i>
         <a href="https://gearoruni.github.io">Hexo</a>
         >
-        <span>目录</span>
+        <span>Transform</span>
     </div>
     <!-- 大型设备详细文章 -->
     <div class="hidden-xs">
         <div class="title-article">
             <h1>
-                <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html">测试类</a>
+                <a href="/2022/09/15/Transform/">Transform</a>
             </h1>
+        </div>
+        <div class="tag-article">
+            
+            <span class="label label-gal">
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/%E6%8F%92%E4%BB%B6/">插件</a>
+                
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-calendar"></i> 2022-09-15
+            </span>
+            
+            <span class="label label-gal">
+                <i class="fa fa-eye"></i>
+            </span>
+            
         </div>
     </div>
     <!-- 小型设备详细文章 -->
@@ -237,21 +256,107 @@
         <center>
             <div class="title-article">
                 <h4>
-                    <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html">测试类</a>
+                    <a href="/2022/09/15/Transform/">Transform</a>
                 </h4>
             </div>
+            <p>
+                <i class="fa fa-calendar"></i> 2022-09-15
+            </p>
+            <p>
+                
+                <i class="fa fa-tags"></i>
+                
+                <a href="/tags/%E6%8F%92%E4%BB%B6/">插件</a>
+                
+                
+                
+                <i class="fa fa-eye"></i>
+                
+            </p>
         </center>
     </div>
-    <div class="content-article" style="margin-top: 30px;">
-        <div class="alert alert-info" style="font-size: 14px; line-height: 2; font-weight: bold;">
-            
-            <a href="/2022/09/10/test/">test</a>
-            <br>
-            
-            
-        </div>
+    <div class="content-article">
+        <h2 id="Transform"><a href="#Transform" class="headerlink" title="Transform"></a>Transform</h2><ol>
+<li><p>插件名：Transform</p>
+</li>
+<li><p>描述：文档上写的是“记录对象的位置、旋转和缩放”，其实还有其他功能，比如改变父级，统计子级数量等</p>
+</li>
+<li><p>函数与属性:</p>
+<ul>
+<li><p><code>childCount</code>:</p>
+<ul>
+<li>参数：无</li>
+<li>功能：返回对象的子对象数量</li>
+</ul>
+</li>
+<li><p><code>forward</code>:</p>
+<ul>
+<li>参数：无</li>
+<li>功能：以标准矢量的形式返回对象在世界坐标中的蓝轴（Z轴），一般就是人物前方</li>
+</ul>
+</li>
+<li><p><code>right</code>:</p>
+<ul>
+<li>参数：无</li>
+<li>功能：返回红轴（X轴）</li>
+</ul>
+</li>
+<li><p><code>up</code>:</p>
+<ul>
+<li>参数：无</li>
+<li>功能：返回绿轴（Y轴）</li>
+</ul>
+</li>
+<li><p><code>localScale</code>:</p>
+<ul>
+<li>参数：<code>float</code></li>
+<li>功能：相对于父级的变换缩放（在2D项目中从1到-1可以实现人物反转）</li>
+</ul>
+</li>
+<li><p><code>rotation</code>:</p>
+<ul>
+<li>参数：<code>Quaternion</code></li>
+<li>功能：改变转向（只建议将别的对象的<code>Quaternion</code>进行赋值，直接修改可能发生意料之外的效果）</li>
+</ul>
+</li>
+<li><p><code>position</code>:</p>
+<ul>
+<li>参数：<code>vector3</code></li>
+<li>功能：改变对象坐标</li>
+</ul>
+</li>
+<li><p><code>GetChild()</code>:</p>
+<ul>
+<li>参数：<code>int</code></li>
+<li>功能：按照序号返回对应的子对象的<code>Transform</code>，这个序号按照对象从上而下的列表顺序排序，第一个是0</li>
+</ul>
+</li>
+<li><p><code>LookAt()</code>:</p>
+<ul>
+<li>参数：<code>Transform</code>，<code>vector3</code></li>
+<li>功能：使对象的蓝轴（z轴）指向目标，同时绿轴（y轴）指向<code>vector3</code>的方向，若未指定<code>vector3</code>则默认使用世界坐标的Y轴（也就是垂直向上）</li>
+</ul>
+</li>
+<li><p><code>SetParent()</code>:</p>
+<ul>
+<li>参数：<code>Transform</code>，<code>bool</code></li>
+<li>功能：将对象变为目标的子对象，<code>bool</code>默认为true，可以保持与之前相同的世界坐标位置旋转和缩放</li>
+</ul>
+</li>
+<li><p><code>SetPositionAndRotation()</code>:</p>
+<ul>
+<li>参数：<code>vector3</code>，<code>Quaternion</code></li>
+<li>功能：设置变换组件的世界坐标位置和旋转</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+
     </div>
 </article>
+
+
                 </div>
                 <aside class="col-md-4 gal-left" id="sidebar">
     <!-- 此为sidebar的搜索框, 非搜索结果页面 -->
@@ -426,13 +531,13 @@
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2022/09/15/Transform/">Transform</a>
+                    <a href="/2022/09/15/%E5%8D%8F%E7%A8%8B/">协程</a>
                 </span>
             </li>
             
             <li class="list-group-item">
                 <span class="post-title">
-                    <a href="/2022/09/15/%E5%8D%8F%E7%A8%8B/">协程</a>
+                    <a href="/2022/09/15/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a>
                 </span>
             </li>
             
@@ -465,17 +570,17 @@
 
                 
                 <li>
-                    <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
+                    <a href="/2022/09/15/Transform/index.html#sidebar-tags" data-toggle="tab" id="tags-tab">热门标签</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
+                    <a href="/2022/09/15/Transform/index.html#sidebar-friend-links" data-toggle="tab" id="friend-links-tab">友情链接</a>
                 </li>
                 
                 
                 <li>
-                    <a href="/categories/%E6%B5%8B%E8%AF%95%E7%B1%BB/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
+                    <a href="/2022/09/15/Transform/index.html#sidebar-links" data-toggle="tab" id="links-tab">个人链接</a>
                 </li>
                 
             </ul>
@@ -483,21 +588,21 @@
                 
                 <div class="cloud-tags tab-pane nav bs-sidenav fade" id="sidebar-tags">
     
-    <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 19.465418146125785px;" class="tag-cloud-link">插件</a>
+    <a href="/tags/%E6%8F%92%E4%BB%B6/" style="font-size: 12.60570862808968px;" class="tag-cloud-link">插件</a>
     
-    <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 16.27583720203997px;" class="tag-cloud-link">逆向</a>
+    <a href="/tags/%E9%80%86%E5%90%91/" style="font-size: 10.382421535381837px;" class="tag-cloud-link">逆向</a>
     
-    <a href="/tags/C/" style="font-size: 15.160269063908995px;" class="tag-cloud-link">C#</a>
+    <a href="/tags/C/" style="font-size: 19.167514912896493px;" class="tag-cloud-link">C#</a>
     
-    <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 11.840846741987743px;" class="tag-cloud-link">语法</a>
+    <a href="/tags/%E8%AF%AD%E6%B3%95/" style="font-size: 19.52163004026123px;" class="tag-cloud-link">语法</a>
     
-    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 18.75671554520246px;" class="tag-cloud-link">设计模式</a>
+    <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10.683322426973458px;" class="tag-cloud-link">设计模式</a>
     
-    <a href="/tags/UI/" style="font-size: 18.609200009336444px;" class="tag-cloud-link">UI</a>
+    <a href="/tags/UI/" style="font-size: 17.96947963770208px;" class="tag-cloud-link">UI</a>
     
-    <a href="/tags/%E6%8E%A5%E5%8F%A3/" style="font-size: 8.141946815856839px;" class="tag-cloud-link">接口</a>
+    <a href="/tags/%E6%8E%A5%E5%8F%A3/" style="font-size: 17.4231683868406px;" class="tag-cloud-link">接口</a>
     
-    <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" style="font-size: 12.714880737155084px;" class="tag-cloud-link">学习记录</a>
+    <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" style="font-size: 13.350951818143757px;" class="tag-cloud-link">学习记录</a>
     
 </div>
                 
